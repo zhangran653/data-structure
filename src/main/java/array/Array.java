@@ -34,26 +34,75 @@ public class Array {
     }
 
     public void addLast(int e) {
-        if (size >= data.length) {
-            throw new IllegalArgumentException("Add last failed");
-        }
-        data[size] = e;
-        size++;
+        add(size, e);
     }
 
-    public void insert(int index, int e) {
+    public void addFirst(int e) {
+        add(0, e);
+    }
+
+    public int get(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("index out of bound");
+        }
+        return data[index];
+    }
+
+    public int set(int index, int e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("index out of bound");
+        }
+        return data[index] = e;
+    }
+
+    public void add(int index, int e) {
         if (size >= data.length) {
             throw new IllegalArgumentException("Add last failed");
         }
-        if (index > data.length - 1) {
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
         }
         for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
         }
         data[index] = e;
+        size++;
     }
 
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(String.format("Array size : %d, capacity: %d\n", size, data.length));
+        s.append("[");
+        for (int i = 0; i < size; i++) {
+            s.append(data[i]);
+            if (i != size - 1) {
+                s.append(", ");
+            }
+        }
+        s.append("]");
+        return s.toString();
+    }
 
     public static void main(String[] args) {
 
@@ -65,16 +114,15 @@ public class Array {
         a.addLast(4);
 
 
-        for (int score : a.data) {
-            System.out.println(score);
-        }
+        System.out.println(a);
+
 
         System.out.println("========");
 
-        a.insert(3, 5);
-        for (int score : a.data) {
-            System.out.println(score);
-        }
+        a.add(3, 5);
+
+        System.out.println(a);
+
 
     }
 }
