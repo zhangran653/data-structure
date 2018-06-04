@@ -69,6 +69,26 @@ public class Array {
         size++;
     }
 
+    public int remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("index out of bound");
+        }
+        int ret = data[index];
+        for (int i = index; i < size; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+        return ret;
+    }
+
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
     public boolean contains(int e) {
         for (int i = 0; i < size; i++) {
             if (data[i] == e) {
@@ -76,7 +96,6 @@ public class Array {
             }
         }
         return false;
-
     }
 
     public int find(int e) {
@@ -86,6 +105,13 @@ public class Array {
             }
         }
         return -1;
+    }
+
+    public void removeElement(int e) {
+        int i = find(e);
+        if (i != -1) {
+            remove(i);
+        }
     }
 
 
@@ -120,6 +146,14 @@ public class Array {
         System.out.println("========");
 
         a.add(3, 5);
+
+        System.out.println(a);
+
+        a.remove(2);
+
+        System.out.println(a);
+
+        a.remove(1);
 
         System.out.println(a);
 
