@@ -4,9 +4,9 @@ package array;
  * @author zhangran
  * @since 2018-06-03
  **/
-public class Array {
+public class Array<E> {
 
-    private int[] data;
+    private E[] data;
     private int size;
 
     public Array() {
@@ -17,7 +17,7 @@ public class Array {
      * @param capacity
      */
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (E[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -33,29 +33,29 @@ public class Array {
         return size == 0;
     }
 
-    public void addLast(int e) {
+    public void addLast(E e) {
         add(size, e);
     }
 
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
         }
         return data[index];
     }
 
-    public int set(int index, int e) {
+    public void set(int index, E e) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
         }
-        return data[index] = e;
+        data[index] = e;
     }
 
-    public void add(int index, int e) {
+    public void add(int index, E e) {
         if (size >= data.length) {
             throw new IllegalArgumentException("Add last failed");
         }
@@ -69,11 +69,11 @@ public class Array {
         size++;
     }
 
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
         }
-        int ret = data[index];
+        E ret = data[index];
         for (int i = index; i < size; i++) {
             data[i] = data[i + 1];
         }
@@ -81,17 +81,17 @@ public class Array {
         return ret;
     }
 
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public class Array {
 
     public int find(int e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -133,7 +133,7 @@ public class Array {
     public static void main(String[] args) {
 
 
-        Array a = new Array(10);
+        Array<Integer> a = new Array(10);
         a.addLast(1);
         a.addLast(2);
         a.addLast(3);
