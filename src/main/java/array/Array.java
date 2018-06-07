@@ -57,7 +57,7 @@ public class Array<E> {
 
     public void add(int index, E e) {
         if (size >= data.length) {
-            throw new IllegalArgumentException("Add last failed");
+            resize(2 * data.length);
         }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
@@ -69,6 +69,14 @@ public class Array<E> {
         size++;
     }
 
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[1];
+        }
+        data = newData;
+    }
+
     public E remove(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index out of bound");
@@ -77,7 +85,11 @@ public class Array<E> {
         for (int i = index; i < size; i++) {
             data[i] = data[i + 1];
         }
+        data[size] = null;
         size--;
+        if (size <= data.length / 2) {
+            resize(data.length / 2);
+        }
         return ret;
     }
 
@@ -87,6 +99,14 @@ public class Array<E> {
 
     public E removeLast() {
         return remove(size - 1);
+    }
+
+    public E getFirst() {
+        return get(0);
+    }
+
+    public E getLast() {
+        return get(size - 1);
     }
 
     public boolean contains(E e) {
@@ -133,7 +153,7 @@ public class Array<E> {
     public static void main(String[] args) {
 
 
-        Array<Integer> a = new Array(10);
+        Array<Integer> a = new Array(3);
         a.addLast(1);
         a.addLast(2);
         a.addLast(3);
