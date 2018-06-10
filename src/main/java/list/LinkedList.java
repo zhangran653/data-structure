@@ -6,11 +6,11 @@ package list;
  **/
 public class LinkedList<E> {
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList() {
-        this.head = null;
+        this.dummyHead = new Node(null, null);
         this.size = 0;
     }
 
@@ -23,12 +23,7 @@ public class LinkedList<E> {
     }
 
     public void addFirst(E e) {
-//        Node node = new Node(e);
-//        node.next = head;
-//        head = node;
-
-        head = new Node(e, head);
-        size++;
+        add(0, e);
     }
 
     public void add(int index, E e) {
@@ -39,9 +34,9 @@ public class LinkedList<E> {
             addFirst(e);
             return;
         }
-        Node pre = head;
-        for (int i = 0; i < index - 1; i++) {
-            pre = head.next;
+        Node pre = dummyHead;
+        for (int i = 0; i < index; i++) {
+            pre = pre.next;
         }
         pre.next = new Node(e, pre.next);
         size++;
@@ -49,6 +44,37 @@ public class LinkedList<E> {
 
     public void addLast(E e) {
         add(size, e);
+    }
+
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Index error");
+        }
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    public void set(int index, E e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Index error");
+        }
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+
+    public E getFirst() {
+        return get(0);
+    }
+
+    public E getLast() {
+        return get(size - 1);
     }
 
     private class Node {
@@ -69,4 +95,6 @@ public class LinkedList<E> {
         }
 
     }
+
+
 }
