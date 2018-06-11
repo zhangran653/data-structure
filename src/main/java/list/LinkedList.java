@@ -105,6 +105,15 @@ public class LinkedList<E> {
         return delNode.e;
     }
 
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
+
     private class Node {
         public E e;
         public Node next;
