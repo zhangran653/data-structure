@@ -39,4 +39,5 @@ public class LinkedListStack<E> implements Stack<E> {
     public void push(E e) {
         list.addFirst(e);
     }
+
 }
