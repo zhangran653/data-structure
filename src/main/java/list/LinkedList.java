@@ -77,6 +77,33 @@ public class LinkedList<E> {
         return get(size - 1);
     }
 
+    public boolean contains(E e) {
+        Node cur = dummyHead.next;
+
+        while (cur.e != null) {
+            if (cur.e.equals(e)) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    public E remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Index error");
+        }
+        Node pre = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            pre = pre.next;
+        }
+        Node delNode = pre.next;
+        pre.next = delNode.next;
+        delNode.next = null;
+        size--;
+        return delNode.e;
+    }
+
     private class Node {
         public E e;
         public Node next;
