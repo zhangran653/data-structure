@@ -39,9 +39,9 @@ public class BST<E extends Comparable<E>> {
             return new Node(e);
         }
 
-        if (node.e.compareTo(e) < 0) {
+        if (e.compareTo(node.e) < 0) {
             node.left = add(e, node.left);
-        } else if (node.e.compareTo(e) > 0) {
+        } else if (e.compareTo(node.e) > 0) {
             node.right = add(e, node.right);
         }
         return node;
@@ -58,13 +58,28 @@ public class BST<E extends Comparable<E>> {
         if (node.e.equals(e)) {
             return true;
         }
-        if (node.e.compareTo(e) < 0) {
+        if (e.compareTo(node.e) < 0) {
             return contains(e, node.left);
         } else {
             return contains(e, node.right);
         }
 
     }
+
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    private void preOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+
+    }
+
 
     private class Node {
         public E e;
