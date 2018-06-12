@@ -22,6 +22,31 @@ public class BST<E extends Comparable<E>> {
         return size == 0;
     }
 
+    public void add(E e) {
+        root = add(e, root);
+    }
+
+    /**
+     * 向以node为根的树中插入元素e，返回插入后新的根
+     *
+     * @param e
+     * @param node
+     * @return
+     */
+    private Node add(E e, Node node) {
+        if (node == null) {
+            size++;
+            return new Node(e);
+        }
+
+        if (node.e.compareTo(e) < 0) {
+            node.left = add(e, node.left);
+        } else if (node.e.compareTo(e) > 0) {
+            node.right = add(e, node.right);
+        }
+        return node;
+    }
+
 
     private class Node {
         public E e;
