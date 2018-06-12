@@ -43,6 +43,15 @@ class Solution {
         return dummyHead.next;
     }
 
+    public ListNode removeElements3(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+        head.next = removeElements3(head.next, val);
+        return head.val == val ? head.next : head;
+    }
+
+
     public static void main(String[] args) {
         Solution s = new Solution();
         ListNode n = new ListNode(1);
