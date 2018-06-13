@@ -25,5 +25,11 @@ public class Main {
         System.out.println("===");
         bst.levelOrder();
 
+        System.out.println("===");
+        System.out.println(bst.minimum());
+
+        System.out.println("===");
+        System.out.println(bst.maximum());
+
     }
 }
