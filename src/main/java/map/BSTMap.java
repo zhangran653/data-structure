@@ -56,10 +56,48 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
         return node;
     }
 
+    private Node remove(Node node, K k) {
+        if (node == null) {
+            return null;
+        }
+        if (k.compareTo(node.key) < 0) {
+            node.left = remove(node.left, k);
+            return node;
+        } else if (k.compareTo(node.key) > 0) {
+            node.right = remove(node.right, k);
+            return node;
+        } else {
+            if (node.left == null) {
+                Node right = node.right;
+                node.right = null;
+                size--;
+                return right;
+            }
+            if (node.right == null) {
+                Node left = node.left;
+                node.left = null;
+                size--;
+                return left;
+            }
+            Node successor = minium(node.right);
+            successor.left = node.left;
+            successor.right = removeMin(node.right);
+            node.left = node.right = null;
+            return successor;
+
+        }
+    }
+
 
     @Override
     public V remove(K k) {
-        return null;
+        Node node = getNode(root, k);
+        if (node == null) {
+            return null;
+        }
+        remove(root, k);
+
+        return node.value;
     }
 
     @Override
