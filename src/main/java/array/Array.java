@@ -21,6 +21,15 @@ public class Array<E> {
         this.size = 0;
     }
 
+    public Array(E[] e) {
+        data = (E[]) new Object[e.length];
+        for (int i = 0; i < e.length; i++) {
+            data[i] = e[i];
+        }
+        size = data.length;
+    }
+
+
     public int getSize() {
         return size;
     }

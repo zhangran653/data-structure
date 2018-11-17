@@ -17,6 +17,10 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>(capacity);
     }
 
+    public MaxHeap(E[] arr) {
+        data = new Array<>(arr);
+
+    }
 
     public int size() {
         return data.getSize();
@@ -56,7 +60,7 @@ public class MaxHeap<E extends Comparable<E>> {
 
     public E findMax() {
         if (data.getSize() == 0) {
-            throw new IllegalArgumentException("size 0");
+            throw new IllegalArgumentException("size is 0");
         }
         return data.get(0);
     }
@@ -82,6 +86,16 @@ public class MaxHeap<E extends Comparable<E>> {
             data.swap(k, i);
             k = i;
         }
+    }
+
+    /**
+     * 取出最大元素，并替换成新元素
+     */
+    public E replace(E e) {
+        E max = findMax();
+        data.set(0, e);
+        siftDown(0);
+        return max;
     }
 
 
