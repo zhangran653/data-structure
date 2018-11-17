@@ -23,21 +23,20 @@ public class SwapList {
 
 
     public ListNode swapPairs(ListNode head) {
-
-        ListNode next = null;
-        ListNode pre = null;
-        ListNode newList = null;
         // head为空或者head.next为空，直接返回
         if (head == null || head.next == null) {
             return head;
         }
+        ListNode node = head.next;
 
+        ListNode next = null;
+        ListNode pre = null;
+        //
         while (head != null && head.next != null) {
             next = head.next;
             if (pre == null) {
                 head.next = next.next;
                 next.next = head;
-                newList = next;
                 pre = head;
                 head = head.next;
                 continue;
@@ -50,7 +49,7 @@ public class SwapList {
 
         }
 
-        return newList;
+        return node;
     }
 
 
