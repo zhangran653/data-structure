@@ -28,7 +28,6 @@ public class SwapList {
             return head;
         }
         ListNode node = head.next;
-
         ListNode next = null;
         ListNode pre = null;
         //
@@ -54,13 +53,13 @@ public class SwapList {
 
 
     public static void main(String[] args) {
-        ListNode n = new ListNode(2);
-        n.next = new ListNode(5);
+        ListNode n = new ListNode(1);
+        n.next = new ListNode(2);
         n.next.next = new ListNode(3);
         n.next.next.next = new ListNode(4);
-        n.next.next.next.next = new ListNode(6);
-        n.next.next.next.next.next = new ListNode(2);
-        n.next.next.next.next.next.next = new ListNode(2);
+//        n.next.next.next.next = new ListNode(6);
+//        n.next.next.next.next.next = new ListNode(2);
+//        n.next.next.next.next.next.next = new ListNode(2);
         new SwapList().swapPairs(n);
     }
 
