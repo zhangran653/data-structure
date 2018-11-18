@@ -33,19 +33,33 @@ public class SwapList {
         //
         while (head != null && head.next != null) {
             next = head.next;
-            if (pre == null) {
-                head.next = next.next;
-                next.next = head;
-                pre = head;
-                head = head.next;
-                continue;
+            if (pre != null) {
+                pre.next = head.next;
             }
-            pre.next = head.next;
             head.next = next.next;
             next.next = head;
             pre = head;
             head = head.next;
+        }
 
+        return node;
+    }
+
+    public ListNode swapPairs2(ListNode head) {
+        // head为空或者head.next为空，直接返回
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode node = head.next;
+        ListNode next = null;
+        ListNode pre = head;
+        head = head.next;
+        //
+        while (head != null && head.next != null) {
+            next = head.next;
+            pre.next = head.next;
+            head.next = pre;
+            head = next;
         }
 
         return node;
