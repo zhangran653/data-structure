@@ -23,7 +23,7 @@ public class SwapList {
 
 
     public ListNode swapPairs(ListNode head) {
-        // head为空或者head.next为空，直接返回
+        //
         if (head == null || head.next == null) {
             return head;
         }
