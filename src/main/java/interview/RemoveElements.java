@@ -44,4 +44,13 @@ public class RemoveElements {
         }
         return head;
     }
+
+    public ListNode removeElementsRecursion(ListNode head, int val) {
+        if (head == null || (head.next == null && head.val == val)) {
+            return null;
+        }
+        ListNode next = removeElements(head.next, val);
+        head.next = next;
+        return head;
+    }
 }
