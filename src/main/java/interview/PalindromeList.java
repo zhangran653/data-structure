@@ -30,7 +30,32 @@ public class PalindromeList {
         if (head == null || head.next == null) {
             return true;
         }
-
-        return false;
+        //1.找到中间节点
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode middle = slow;
+        //2.翻转中间节点
+        ListNode pre = null;
+        ListNode next = null;
+        while (middle != null) {
+            next = middle.next;
+            middle.next = pre;
+            pre = middle;
+            middle = next;
+        }
+        //3. 比较
+        while (pre != null) {
+            if (pre.val != head.val) {
+                return false;
+            } else {
+                pre = pre.next;
+                head = head.next;
+            }
+        }
+        return true;
     }
 }
