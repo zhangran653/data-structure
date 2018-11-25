@@ -1,4 +1,4 @@
-package interview;
+package interview.listlist;
 
 /**
  * https://leetcode.com/problems/palindrome-linked-list/description/

@@ -1,4 +1,4 @@
-package interview;
+package interview.listlist;
 
 /**
  * https://leetcode.com/problems/remove-linked-list-elements/description/
