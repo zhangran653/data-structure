@@ -45,6 +45,24 @@ public class RemoveElements {
         return head;
     }
 
+    public ListNode removeElements2(ListNode head, int val) {
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+        if (head == null) {
+            return null;
+        }
+        ListNode pre = head;
+        while (pre.next != null) {
+            if (pre.next.val == val) {
+                pre.next = pre.next.next;
+            } else {
+                pre = pre.next;
+            }
+        }
+        return head;
+    }
+
     public ListNode removeElementsRecursion(ListNode head, int val) {
         if (head == null || (head.next == null && head.val == val)) {
             return null;
