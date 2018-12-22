@@ -258,6 +258,43 @@ public class BST<E extends Comparable<E>> {
 
     }
 
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+        if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = remove(node.right, e);
+            return node;
+        } else {
+            if (node.left == null) {
+                Node right = node.right;
+                node.right = null;
+                size--;
+                return right;
+            }
+            if (node.right == null) {
+                Node left = node.left;
+                node.left = null;
+                size--;
+                return left;
+            }
+            Node suc = min(node.right);
+            suc.right = removeMin(node.right);
+            suc.left = node.left;
+            node.right = null;
+            node.left = null;
+            return suc;
+        }
+
+    }
+
     /**
      * 1
      * /  \
