@@ -177,6 +177,87 @@ public class BST<E extends Comparable<E>> {
     }
 
 
+    public E min() {
+        if (size == 0) {
+            throw new IllegalArgumentException("BST empty");
+        }
+        return min(root).e;
+    }
+
+    private Node min(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return min(node.left);
+    }
+
+    public E max() {
+        if (size == 0) {
+            throw new IllegalArgumentException("BST empty");
+        }
+        return max(root).e;
+    }
+
+    private Node max(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+        return max(node.right);
+    }
+
+
+    public E removeMin() {
+        if (size == 0) {
+            throw new IllegalArgumentException("BST empty");
+        }
+        E ret = min();
+        root = removeMin(root);
+        return ret;
+    }
+
+    /**
+     * 返回删除最小值节点后的二叉树的根
+     *
+     * @param node
+     * @return
+     */
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+
+    }
+
+    public E removeMax() {
+
+        E ret = max();
+        root = removeMax(root);
+        return ret;
+    }
+
+    /**
+     * 返回删除最大值节点后的二叉树的根
+     *
+     * @param node
+     * @return
+     */
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+        node.right = removeMax(node.right);
+        return node;
+
+    }
+
     /**
      * 1
      * /  \
