@@ -295,6 +295,33 @@ public class BST<E extends Comparable<E>> {
 
     }
 
+    public Node floor(E e) {
+        if (size == 0 || e.compareTo(min()) < 0) {
+            return null;
+        }
+        return floor(root, e);
+
+    }
+
+    private Node floor(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+        if (e.compareTo(node.e) == 0) {
+            return node;
+        }
+        if (node.e.compareTo(e) > 0) {
+            return floor(node.left, e);
+        }
+        Node temp = floor(node.right, e);
+        if (temp != null) {
+            return temp;
+        }
+        return node;
+
+    }
+
+
     /**
      * 1
      * /  \
