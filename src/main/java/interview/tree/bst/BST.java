@@ -1,7 +1,6 @@
 package interview.tree.bst;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author zhangran
@@ -111,11 +110,49 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
-    public void inOrder(){
+    public void preOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        if (root == null) {
+            return;
+        }
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            System.out.println(node.e);
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
+    }
+
+    public void levelOrder() {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            System.out.println(node.e);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+
+        }
+    }
+
+    public void inOrder() {
         inOrder(root);
     }
 
-    private void inOrder(Node node){
+    private void inOrder(Node node) {
         if (node == null) {
             return;
         }
@@ -125,11 +162,11 @@ public class BST<E extends Comparable<E>> {
         inOrder(node.right);
     }
 
-    public void postOrder(){
+    public void postOrder() {
         postOrder(root);
     }
 
-    private void postOrder(Node node){
+    private void postOrder(Node node) {
         if (node == null) {
             return;
         }
@@ -138,8 +175,6 @@ public class BST<E extends Comparable<E>> {
         postOrder(node.right);
         System.out.println(node.e);
     }
-
-
 
 
     /**
