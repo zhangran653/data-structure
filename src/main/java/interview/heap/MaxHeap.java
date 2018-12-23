@@ -18,6 +18,21 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>(capacity);
     }
 
+    public MaxHeap(E[] e) {
+        data = new Array<>(e);
+        for (int i = parent(data.getSize() - 1); i >= 0; i--) {
+            siftDown(i);
+        }
+
+    }
+
+    public E findMax() {
+        if (data.getSize() == 0) {
+            throw new IllegalArgumentException("size is 0");
+        }
+        return data.get(0);
+    }
+
     public int getSize() {
         return data.getSize();
     }
