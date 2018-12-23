@@ -63,12 +63,17 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public V get(K k) {
-        return null;
+        Node node = getNode(root, k);
+        return node == null ? null : node.value;
     }
 
     @Override
     public void set(K k, V v) {
-
+        Node node = getNode(root, k);
+        if (node == null) {
+            throw new IllegalArgumentException("key doesn't exit");
+        }
+        node.value = v;
     }
 
     @Override
@@ -83,6 +88,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public boolean contains(K k) {
-        return false;
+        return get(k) == null ? false : true;
     }
 }
